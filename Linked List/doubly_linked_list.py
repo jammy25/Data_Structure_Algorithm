@@ -2,6 +2,8 @@
 
 from tkinter import N
 
+from requests import delete
+
 
 class Node:
     def __init__ (self, data):
@@ -16,6 +18,7 @@ class DoublyLinkedList:
         self.head = None
 
 # Traversal Operation
+
     #Traversing in forward direction
     def print_LL(self):
         if self.head is None:
@@ -39,6 +42,7 @@ class DoublyLinkedList:
                 n = n.pref
 
 # Insertion Operation
+
     # if list is empty
     def insert_empty(self, data):
         if self.head is None:
@@ -107,6 +111,35 @@ class DoublyLinkedList:
                     self.head = new_node
                 n.pref = new_node
 
+# Deletion Operation
+
+    # at beginning
+    def delete_begin(self):
+        if self.head is None:
+            print("Linked List is empty so can't delete any node.")
+            return
+        if self.head.nref is None:
+            self.head = None
+            print("DLL is empty after deleting the only node present.")
+        else:
+            self.head = self.head.nref
+            self.head.pref = None
+    # at end
+    def delete_end(self):
+        if self.head is None:
+            print("Linked List is empty so can't delete any node.")
+            return
+        if self.head.nref is None:
+            self.head = None
+            print("DLL is empty after deleting the only node present.")
+        else:
+            n = self.head
+            while n.nref is not None:
+                n = n.nref
+            n.pref.nref = None
+
+
+
                 
 
 
@@ -115,7 +148,7 @@ DLL1 = DoublyLinkedList()
 # DLL1.add_begin(4)
 # DLL1.add_end(100)
 # DLL1.add_after(10, 4)
-DLL1.add_before(100, 4)
+# DLL1.add_before(100, 4)
+DLL1.delete_end()
 DLL1.print_LL()
 DLL1.print_LL_reverse()
-                
