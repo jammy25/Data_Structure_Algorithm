@@ -1,10 +1,5 @@
 # Class to create 'NODE'
 
-from tkinter import N
-
-from requests import delete
-
-
 class Node:
     def __init__ (self, data):
         self.data = data
@@ -137,18 +132,46 @@ class DoublyLinkedList:
             while n.nref is not None:
                 n = n.nref
             n.pref.nref = None
-
-
-
+    # any node (by value)
+    def delete_by_value(self, x):
+        if self.head is None:
+            print("Linked List is empty so can't delete any node.")
+            return
+        if self.head.nref is None:
+            if self.head.data == x:
+                self.head = None
+                # print("DLL is empty after deleting the only node present.")
+            else:
+                print(x, "is not present in the DLL.")
+            return
+        if self.head.nref == x:
+            self.head = self.head.nref
+            self.head.pref = None
+            return
+        n = self.head
+        while n.nref is not None:
+            if x == n.data:
+                break
+            n = n.nref
+        if n.nref is not None:
+            n.nref.pref = n.pref
+            n.pref.nref = n.nref                 #n.nref = None    n.pref = None
+        else:
+            if n.data == x:
+                n.pref.nref = None
+            else:
+                print(x, "is not present in the DLL.")
                 
+      
 
 
 DLL1 = DoublyLinkedList()
 # DLL1.insert_empty(10)
-# DLL1.add_begin(4)
+DLL1.add_begin(4)
+# DLL1.add_begin(14)
 # DLL1.add_end(100)
 # DLL1.add_after(10, 4)
-# DLL1.add_before(100, 4)
-DLL1.delete_end()
+DLL1.add_before(10, 4)
+DLL1.delete_by_value(10)
 DLL1.print_LL()
 DLL1.print_LL_reverse()
