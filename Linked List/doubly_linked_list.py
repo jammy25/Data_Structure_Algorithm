@@ -66,14 +66,56 @@ class DoublyLinkedList:
                 n = n.nref
             new_node.pref = n
             n.nref = new_node
+    # after nth node
+    def add_after(self, data, x):
+        if self.head is None:
+            print("Linked list is empty.")
+        else:
+            n = self.head
+            while n is not None:
+                if n.data == x:
+                    break
+                n = n.nref
+            if n is None:
+                print("Given node is not present in the DLL.")
+            else:
+                new_node = Node(data)
+                new_node.nref = n.nref
+                new_node.pref = n
+                if n.nref is not None:
+                    n.nref.pref = new_node
+                n.nref = new_node
+    # before nth node
+    def add_before(self, data, x):
+        if self.head is None:
+            print("Linked list is empty.")
+        else:
+            n = self.head
+            while n is not None:
+                if n.data == x:
+                    break
+                n = n.nref
+            if n is None:
+                print("Given node is not present in the DLL.")
+            else:
+                new_node = Node(data)
+                new_node.nref = n
+                new_node.pref = n.pref
+                if n.pref is not None:
+                    n.pref.nref = new_node
+                else:
+                    self.head = new_node
+                n.pref = new_node
 
-
+                
 
 
 DLL1 = DoublyLinkedList()
 # DLL1.insert_empty(10)
-# DLL1.add_begin(20)
-DLL1.add_end(100)
+# DLL1.add_begin(4)
+# DLL1.add_end(100)
+# DLL1.add_after(10, 4)
+DLL1.add_before(100, 4)
 DLL1.print_LL()
 DLL1.print_LL_reverse()
                 
