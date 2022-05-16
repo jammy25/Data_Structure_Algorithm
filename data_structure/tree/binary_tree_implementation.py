@@ -1,5 +1,3 @@
-from curses.ascii import BS
-
 
 class BST:
     def __init__(self, key):
@@ -13,7 +11,7 @@ class BST:
         if self.key is None:                      # for empty tree
             self.key = data
             return
-        if self.key == data:                      # for duplicate case
+        if self.key == data:                      # for duplicate case, it will simply ignore the duplicate value
             return
         if self.key > data:
             if self.lchild:
@@ -26,7 +24,30 @@ class BST:
             else:
                 self.rchild = BST(data)
 
+# Search Operation
+
+    def search(self,data):
+        if self.key == data:
+            print("Node is found.")
+            return
+        if self.key > data:
+            if self.lchild:
+                self.lchild.search(data)
+            else:
+                print("Node is not present in tree.")
+        else:
+            if self.rchild:
+                self.rchild.search(data)
+            else:
+                print("Node is not present in the tree.")
+
+
+
+
+
 root = BST(20)
 list1 = [20, 4, 30, 4, 1, 5, 6]
 for i in list1:
     root.insert(i)
+root.search(6)
+root.search(60)
