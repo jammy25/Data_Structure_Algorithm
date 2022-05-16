@@ -48,16 +48,20 @@ class BST:
             self.lchild.preorder()
         if self.rchild:
             self.rchild.preorder()
-
-
-
-
-
-
-
-
-
-
+    # in-order traversal
+    def inorder(self):        
+        if self.lchild:
+            self.lchild.inorder()
+        print(self.key, end=" ")
+        if self.rchild:
+            self.rchild.inorder()
+    # post-order
+    def postorder(self):
+        if self.lchild:
+            self.lchild.postorder()
+        if self.rchild:
+            self.rchild.postorder()
+        print(self.key, end=" ")
 
 
 
@@ -68,4 +72,11 @@ for i in list1:
     root.insert(i)
 root.search(6)
 root.search(60)
+print("PreOrder")
 root.preorder()
+print()
+print("InOrder")
+root.inorder()
+print()
+print("PostOrder")
+root.postorder()
