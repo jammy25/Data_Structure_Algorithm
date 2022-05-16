@@ -65,44 +65,61 @@ class BST:
 
 # Delete Operation
 
-    def delete(self, data):
+    def delete(self, data, curr):
         if self.key is None:
             print("Tree is empty.")
             return
         if self.key > data:
             if self.lchild:                                       # To check if there is a lchild
-                self.lchild = self.lchild.delete(data)            # storing the next value after deleting the asked tree
+                self.lchild = self.lchild.delete(data, curr)            # storing the next value after deleting the asked tree
             else:
                 print('Given node is not present in the tree.')
         elif self.key < data:
             if self.rchild:
-                self.rchild = self.rchild.delete(data)
+                self.rchild = self.rchild.delete(data, curr)
             else:
                 print("Given node is not present in the tree.")
         else:
             if self.lchild is None:
                 temp = self.rchild
+                if data == curr:
+                    self.key = temp.key
+                    self.lchild = temp.lchild
+                    self.rchild = temp.rchild
+                    temp = None
+                    return
                 self = None
                 return temp                                       # Both these if's are for 0 and 1 child node codition 
             if self.rchild is None:
                 temp = self.lchild
+                if data == curr:
+                    self.key = temp.key
+                    self.lchild = temp.lchild
+                    self.rchild = temp.rchild
+                    temp = None
+                    return
                 self = None
                 return temp
             node = self.rchild
-            while node.lchild:                                    # for 2 child condition
+            while node.lchild:                                    # for 2 child condition(and root node also with 2 child)
                 node = self.lchild
             self.key = node.key
-            self.rchild = self.rchild.delete(node.key)
+            self.rchild = self.rchild.delete(node.key, curr)
         return self
-            
+    # deletion update (to delete root node with 0 and 1 child)
+def count(node):
+    if node is None:
+        return 0
+    return 1 + count(node.lchild) + count(node.rchild)
 
 
 root = BST(10)
-list1 = [6, 3, 1, 6, 98, 3, 7]
+list1 = [1, 15]    
 for i in list1:
     root.insert(i)
 # root.search(6)
 # root.search(60)
+print(count(root))
 print("PreOrder")
 root.preorder()
 print()
@@ -111,6 +128,9 @@ print()
 # print()
 # print("PostOrder")
 # root.postorder()
-root.delete(10)
+if count(root) > 1:
+    root.delete(10, root.key)
+else:
+    print("Can't perform delete operation.")
 print("After deleting:")
 root.preorder()
