@@ -70,7 +70,7 @@ class BST:
             print("Tree is empty.")
             return
         if self.key > data:
-            if self.lchild:                                       # To check if there is a lchild
+            if self.lchild:                                             # To check if there is a lchild
                 self.lchild = self.lchild.delete(data, curr)            # storing the next value after deleting the asked tree
             else:
                 print('Given node is not present in the tree.')
