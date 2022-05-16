@@ -1,4 +1,3 @@
-
 class BST:
     def __init__(self, key):
         self.key = key
@@ -41,6 +40,24 @@ class BST:
             else:
                 print("Node is not present in the tree.")
 
+# Traversal Operation
+    # pre-order traversal
+    def preorder(self):
+        print(self.key, end = " ")
+        if self.lchild:
+            self.lchild.preorder()
+        if self.rchild:
+            self.rchild.preorder()
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -51,3 +68,4 @@ for i in list1:
     root.insert(i)
 root.search(6)
 root.search(60)
+root.preorder()
