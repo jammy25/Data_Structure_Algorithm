@@ -55,7 +55,7 @@ class BST:
         print(self.key, end=" ")
         if self.rchild:
             self.rchild.inorder()
-    # post-order
+    # post-order traversal
     def postorder(self):
         if self.lchild:
             self.lchild.postorder()
@@ -63,20 +63,54 @@ class BST:
             self.rchild.postorder()
         print(self.key, end=" ")
 
+# Delete Operation
+
+    def delete(self, data):
+        if self.key is None:
+            print("Tree is empty.")
+            return
+        if self.key > data:
+            if self.lchild:                                       # To check if there is a lchild
+                self.lchild = self.lchild.delete(data)            # storing the next value after deleting the asked tree
+            else:
+                print('Given node is not present in the tree.')
+        elif self.key < data:
+            if self.rchild:
+                self.rchild = self.rchild.delete(data)
+            else:
+                print("Given node is not present in the tree.")
+        else:
+            if self.lchild is None:
+                temp = self.rchild
+                self = None
+                return temp                                       # Both these if's are for 0 and 1 child node codition 
+            if self.rchild is None:
+                temp = self.lchild
+                self = None
+                return temp
+            node = self.rchild
+            while node.lchild:                                    # for 2 child condition
+                node = self.lchild
+            self.key = node.key
+            self.rchild = self.rchild.delete(node.key)
+        return self
+            
 
 
-
-root = BST(20)
-list1 = [20, 4, 30, 4, 1, 5, 6]
+root = BST(10)
+list1 = [6, 3, 1, 6, 98, 3, 7]
 for i in list1:
     root.insert(i)
-root.search(6)
-root.search(60)
+# root.search(6)
+# root.search(60)
 print("PreOrder")
 root.preorder()
 print()
-print("InOrder")
-root.inorder()
-print()
-print("PostOrder")
-root.postorder()
+# print("InOrder")
+# root.inorder()
+# print()
+# print("PostOrder")
+# root.postorder()
+root.delete(10)
+print("After deleting:")
+root.preorder()
