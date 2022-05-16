@@ -106,20 +106,37 @@ class BST:
             self.key = node.key
             self.rchild = self.rchild.delete(node.key, curr)
         return self
-    # deletion update (to delete root node with 0 and 1 child)
+
+# max and min key
+
+    def min_node(self):
+        current = self
+        while current.lchild:
+            current = current.lchild
+        print(current.key, "is the smallest key in the tree.")
+    def max_node(self):
+        current = self
+        while current.rchild:
+            current = current.rchild
+        print(current.key, "is the largest key in the tree.")
+
+# deletion update (to delete root node with 0 and 1 child)
 def count(node):
     if node is None:
         return 0
     return 1 + count(node.lchild) + count(node.rchild)
 
 
+
+
+
 root = BST(10)
-list1 = [1, 15]    
+list1 = [6, 3, 1, 6, 98, 3, 7]    
 for i in list1:
     root.insert(i)
 # root.search(6)
 # root.search(60)
-print(count(root))
+# print(count(root))
 print("PreOrder")
 root.preorder()
 print()
@@ -128,9 +145,11 @@ print()
 # print()
 # print("PostOrder")
 # root.postorder()
-if count(root) > 1:
-    root.delete(10, root.key)
-else:
-    print("Can't perform delete operation.")
-print("After deleting:")
-root.preorder()
+# if count(root) > 1:
+#     root.delete(10, root.key)
+# else:
+#     print("Can't perform delete operation.")
+# print("After deleting:")
+# root.preorder()
+root.min_node()
+root.max_node()
