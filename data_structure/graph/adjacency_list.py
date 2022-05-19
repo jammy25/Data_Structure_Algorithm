@@ -14,9 +14,9 @@ def add_edge(v1, v2, cost):
     elif v2 not in graph:
         print(v2, "is not present in the graph.")
     else:
-        list1 = [v1, cost]
+        # list1 = [v1, cost]
         list2 = [v2, cost]
-        graph[v2].append(list1)
+        # graph[v2].append(list1)
         graph[v1].append(list2)
 
 graph = {}
