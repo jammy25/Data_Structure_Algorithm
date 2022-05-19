@@ -16,7 +16,7 @@ def add_node(v):
 
 # add_edge
 
-def add_edge(v1, v2):
+def add_edge(v1, v2, cost):
     if v1 not in nodes:
         print (v1, "is not present in the graph.")
     elif v2 not in nodes:
@@ -24,14 +24,14 @@ def add_edge(v1, v2):
     else:
         index1 = nodes.index(v1)
         index2 = nodes.index(v2)
-        graph[index1][index2] = 1
-        graph[index2][index1] = 1
+        graph[index1][index2] = cost
+        graph[index2][index1] = cost
 
 # to print in matrix form
 def print_graph():
     for i in range(node_count):
         for j in range(node_count):
-            print(graph[i][j], end = " ")
+            print(format(graph[i][j], "3"), end = " ")
         print()
 
 
@@ -45,7 +45,7 @@ add_node("C")
 # print(node_count)
 print("After adding nodes")
 print(nodes)
-add_edge("A", "B")
-add_edge("A", "C")
+add_edge("A", "B", 10)
+add_edge("A", "C", 5)
 print(graph)
 print_graph()
