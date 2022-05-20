@@ -25,7 +25,21 @@ def add_edge(v1, v2, cost):
         index1 = nodes.index(v1)
         index2 = nodes.index(v2)
         graph[index1][index2] = cost
-        graph[index2][index1] = cost
+        graph[index2][index1] = cost                     # for weighted directed graph take only one graph value.
+
+# delete_node
+
+def delete_node(v):
+    global node_count
+    if v not in nodes:
+        print(v, "is not present in the graph.")
+    else:
+        index1 = nodes.index(v)
+        node_count = node_count - 1
+        nodes.remove(v)
+        graph.pop(index1)
+        for i in graph:
+            i.pop(index1)
 
 # to print in matrix form
 def print_graph():
@@ -41,11 +55,13 @@ graph = []
 node_count = 0
 add_node("A")
 add_node("B")
-add_node("C")
+# add_node("C")
 # print(node_count)
-print("After adding nodes")
-print(nodes)
+# print("After adding nodes")
+# print(nodes)
 add_edge("A", "B", 10)
-add_edge("A", "C", 5)
-print(graph)
+# add_edge("A", "C", 5)
+delete_node("A")
+print("graph after deleting:")
 print_graph()
+print("nodes: ", nodes)
