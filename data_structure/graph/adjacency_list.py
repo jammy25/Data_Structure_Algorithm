@@ -16,7 +16,7 @@ def add_edge(v1, v2):
     else:
         # list1 = [v1, cost]
         # list2 = [v2, cost]
-        # graph[v2].append(list1)
+        graph[v2].append(v1)
         graph[v1].append(v2)
 
 # delete_node
@@ -37,5 +37,5 @@ add_node('B')
 add_node('C')
 add_edge("A", "B")
 add_edge("A", "C")
-# delete_node("C")
+delete_node("C")
 print(graph)
