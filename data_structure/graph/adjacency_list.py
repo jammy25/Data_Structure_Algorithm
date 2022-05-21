@@ -8,16 +8,16 @@ def add_node(v):
 
 # add_edge
 
-def add_edge(v1, v2, cost):
+def add_edge(v1, v2):
     if v1 not in graph:
         print(v1, "is not present in the graph.")
     elif v2 not in graph:
         print(v2, "is not present in the graph.")
     else:
-        list1 = [v1, cost]
-        list2 = [v2, cost]
-        graph[v2].append(list1)
-        graph[v1].append(list2)
+        # list1 = [v1, cost]
+        # list2 = [v2, cost]
+        graph[v2].append(v1)
+        graph[v1].append(v2)
 
 # delete_node
 
@@ -35,12 +35,24 @@ def delete_node(v):
                     list1.remove(j)
                     break
 
+# delete_edge
+
+def delete_edge(v1, v2):
+    if v1 not in graph:
+        print(v1, "is not present in the graph.")
+    elif v2 not in graph:
+        print(v2, "is not present in the graph.")
+    else:
+        if v2 in graph[v1]:
+            graph[v1].remove(v2)
+            graph[v2].remove(v1)
+
 
 graph = {}
 add_node('A')
 add_node('B')
 add_node('C')
-add_edge("A", "B", 20)
-add_edge("A", "C", 5)
-delete_node("C")
+add_edge("A", "B")
+add_edge("A", "C")
+delete_edge("B", "C")
 print(graph)
