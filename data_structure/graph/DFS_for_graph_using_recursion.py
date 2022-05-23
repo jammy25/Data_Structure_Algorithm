@@ -20,14 +20,13 @@ def add_edge(v1, v2):
 
 def DFS(node, visited, graph):
     if node not in graph:
-        print("Node is not present.")
+        print("Node is not present in the graph.")
         return
     if node not in visited:
         print(node)
         visited.add(node)
         for i in graph[node]:
-            DFS(i, visited, graph)
-
+            DFS(i, visited, graph)                        # for weighted graph DFS(i[0], visited, graph)
 
 
 visited = set()
@@ -47,4 +46,4 @@ add_edge("C", "D")
 add_edge("E", "D")
 print(graph)
 
-DFS("K", visited, graph)
+DFS("A", visited, graph)
