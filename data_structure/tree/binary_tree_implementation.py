@@ -134,7 +134,7 @@ root = BST(10)
 list1 = [6, 3, 1, 6, 98, 3, 7]    
 for i in list1:
     root.insert(i)
-# root.search(6)
+root.search(6)
 # root.search(60)
 # print(count(root))
 print("PreOrder")
